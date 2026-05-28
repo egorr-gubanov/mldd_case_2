@@ -1,0 +1,20 @@
+flowchart TD
+    startNode([Сотрудник подходит к КПП])
+    scanPass[Дежурный сканирует пластиковый пропуск]
+    openProfile[Система показывает профиль сотрудника]
+    manualCompare[Дежурный визуально сравнивает лицо с фотографией]
+    decision{Сходство кажется достаточным?}
+    allow[Дежурный разрешает проход]
+    deny[Дежурный отказывает или вызывает службу безопасности]
+    logMinimal[В журнал попадает только факт прохода или отказа]
+    endNode([Процесс завершен])
+
+    startNode --> scanPass
+    scanPass --> openProfile
+    openProfile --> manualCompare
+    manualCompare --> decision
+    decision -->|Да| allow
+    decision -->|Нет| deny
+    allow --> logMinimal
+    deny --> logMinimal
+    logMinimal --> endNode

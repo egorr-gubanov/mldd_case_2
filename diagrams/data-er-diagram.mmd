@@ -1,0 +1,107 @@
+erDiagram
+    EMPLOYEE {
+        uuid employee_id PK
+        string personnel_number
+        string full_name
+        string department
+        string position
+        string employment_status
+        datetime created_at
+        datetime updated_at
+    }
+
+    ACCESS_CARD {
+        uuid card_id PK
+        uuid employee_id FK
+        string card_number
+        string status
+        datetime issued_at
+        datetime revoked_at
+    }
+
+    ACCESS_RIGHT {
+        uuid right_id PK
+        uuid employee_id FK
+        string zone_code
+        string schedule_code
+        string status
+        datetime valid_from
+        datetime valid_to
+    }
+
+    CHECKPOINT {
+        uuid checkpoint_id PK
+        string name
+        string location
+        string status
+    }
+
+    DEVICE {
+        uuid device_id PK
+        uuid checkpoint_id FK
+        string device_type
+        string serial_number
+        string status
+    }
+
+    BIOMETRIC_TEMPLATE {
+        uuid template_id PK
+        uuid employee_id FK
+        string model_version
+        string vector_ref
+        string quality_status
+        datetime created_at
+        datetime expires_at
+    }
+
+    ACCESS_EVENT {
+        uuid event_id PK
+        uuid employee_id FK
+        uuid card_id FK
+        uuid checkpoint_id FK
+        uuid device_id FK
+        string event_status
+        datetime occurred_at
+    }
+
+    ML_DECISION {
+        uuid decision_id PK
+        uuid event_id FK
+        uuid template_id FK
+        string model_version
+        float similarity_score
+        string decision
+        string reason
+        int latency_ms
+    }
+
+    OPERATOR_REVIEW {
+        uuid review_id PK
+        uuid event_id FK
+        uuid operator_id FK
+        string decision
+        string comment
+        datetime reviewed_at
+    }
+
+    AUDIT_LOG {
+        uuid audit_id PK
+        string actor_type
+        uuid actor_id
+        string action
+        string object_type
+        uuid object_id
+        datetime created_at
+    }
+
+    EMPLOYEE ||--o{ ACCESS_CARD : owns
+    EMPLOYEE ||--o{ ACCESS_RIGHT : has
+    EMPLOYEE ||--o{ BIOMETRIC_TEMPLATE : has
+    EMPLOYEE ||--o{ ACCESS_EVENT : participates
+    CHECKPOINT ||--o{ DEVICE : contains
+    CHECKPOINT ||--o{ ACCESS_EVENT : records
+    DEVICE ||--o{ ACCESS_EVENT : captures
+    ACCESS_CARD ||--o{ ACCESS_EVENT : used_in
+    ACCESS_EVENT ||--o| ML_DECISION : produces
+    ACCESS_EVENT ||--o| OPERATOR_REVIEW : may_require
+    BIOMETRIC_TEMPLATE ||--o{ ML_DECISION : compared_with
