@@ -1,0 +1,60 @@
+@startuml business_process_as_is
+skinparam shadowing false
+skinparam backgroundColor white
+skinparam defaultFontName Arial
+skinparam activity {
+  BorderColor #333333
+  FontSize 11
+}
+skinparam arrow {
+  Color #333333
+}
+
+title BPMN 2.0 — AS-IS\nПроцесс прохода через КПП до внедрения ML-системы
+
+legend right
+  |= Обозначение |= Элемент BPMN 2.0 |
+  | (●) | Событие начала / окончания |
+  | [ ] | Задача (Task) |
+  | {X} | Исключающий шлюз (XOR Gateway) |
+  | Дорожка | Lane (участник процесса) |
+endlegend
+
+|#E3F2FD|Сотрудник|
+start
+:Подойти к КПП;
+:Предъявить пластиковый пропуск\n**(User Task)**;
+
+|#FFF3E0|Дежурный КПП|
+:Сканировать пропуск\n**(User Task)**;
+
+|#ECEFF1|СКУД|
+:Показать профиль и фото сотрудника\n**(Service Task)**;
+
+|#FFF3E0|Дежурный КПП|
+:Визуально сравнить лицо с фото\n**(Manual Task)**;
+
+if (Лицо похоже\nна фото?) then (да)
+  if (Есть право\nдоступа?) then (да)
+    |#E3F2FD|Сотрудник|
+    :Пройти через турникет\n**(User Task)**;
+    stop
+  else (нет)
+    |#FFF3E0|Дежурный КПП|
+    :Отказать в проходе\n**(User Task)**;
+    stop
+  endif
+else (нет / сомнение)
+  |#FFF3E0|Дежурный КПП|
+  :Дополнительная ручная проверка\n**(User Task)**;
+  if (Личность\nподтверждена?) then (да)
+    |#E3F2FD|Сотрудник|
+    :Пройти через турникет\n**(User Task)**;
+    stop
+  else (нет)
+    :Отказ / инцидент\n**(User Task)**;
+    stop
+  endif
+endif
+
+@enduml

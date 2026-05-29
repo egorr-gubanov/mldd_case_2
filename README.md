@@ -10,8 +10,8 @@
 
 ## Ссылки на документированные модели
 
-- [Бизнес-процесс до внедрения системы](docs/diagrams/business_process_before.md)
-- [Бизнес-процесс после внедрения системы](docs/diagrams/business_process_after.md)
+- [BPMN AS-IS: бизнес-процесс до внедрения системы](docs/diagrams/business_process_before.md)
+- [BPMN TO-BE: бизнес-процесс после внедрения системы](docs/diagrams/business_process_after.md) — с акцентом на изменения от ИС
 - [Сценарий MVP: пропуск и проверка лица](docs/diagrams/business_process_mvp.md)
 - [Структура данных и распределение хранилищ](docs/diagrams/data_model.md)
 - [Архитектура системы с распределенными данными](docs/diagrams/system_architecture.md)
@@ -34,8 +34,8 @@
 
 Текущий и целевой процессы показаны в моделях:
 
-- [бизнес-процесс до внедрения](docs/diagrams/business_process_before.md);
-- [бизнес-процесс после внедрения](docs/diagrams/business_process_after.md).
+- [BPMN AS-IS: процесс до внедрения](docs/diagrams/business_process_before.md);
+- [BPMN TO-BE: процесс после внедрения](docs/diagrams/business_process_after.md) — показано, что меняет ML-система в бизнес-процессе.
 
 ### 1.2. Зачем идем в разработку продукта
 

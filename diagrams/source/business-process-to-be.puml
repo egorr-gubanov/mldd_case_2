@@ -1,0 +1,59 @@
+@startuml business_process_to_be
+skinparam shadowing false
+skinparam backgroundColor white
+skinparam defaultFontName Arial
+skinparam activity {
+  BorderColor #333333
+  FontSize 11
+}
+
+title BPMN 2.0 — TO-BE\nПроцесс прохода через КПП после внедрения ML-системы
+
+|Сотрудник|
+start
+:Подойти к КПП;
+:Предъявить пропуск\n(User Task);
+
+|Терминал СКУД|
+:Считать пропуск\n(Service Task);
+
+|ML система|
+:Получить кадр лица\n(Service Task);
+:Детекция и оценка качества\n(Service Task);
+
+if (Кадр пригоден?) then (да)
+  :Liveness проверка\n(Service Task);
+  :Идентификация 1:N\n(Service Task);
+  :Проверка порога и права доступа\n(Service Task);
+  if (Автоматический допуск?) then (да)
+    |Терминал СКУД|
+    :Открыть турникет\n(Service Task);
+    |ML система|
+    :Записать в audit log\n(Service Task);
+    stop
+  else (спорно)
+    |Дежурный КПП|
+    :Ручная проверка\n(User Task);
+    if (Подтверждено?) then (да)
+      |Терминал СКУД|
+      :Открыть турникет\n(Service Task);
+      stop
+    else (нет)
+      :Отказ в проходе\n(User Task);
+      stop
+    endif
+  endif
+else (нет)
+  |Дежурный КПП|
+  :Ручная проверка\n(User Task);
+  stop
+endif
+
+note right #E8F5E9
+  **Изменения от ИС:**
+  ручное сравнение -> ML-идентификация;
+  дежурный только для спорных случаев;
+  журнал аудита решений.
+end note
+
+@enduml
