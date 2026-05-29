@@ -1,7 +1,5 @@
 .DS_Store
 .venv/
 __pycache__/
-*.pyc
 ~$*.docx
 *.tmp.docx
-diagrams/business-process-as-is.png
