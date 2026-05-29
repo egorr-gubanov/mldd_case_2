@@ -1,0 +1,42 @@
+# Сценарий MVP: пропуск и проверка лица
+
+Упрощенный целевой процесс для первого этапа пилота: сотрудник предъявляет пропуск, система сравнивает лицо только с шаблоном владельца пропуска.
+
+```mermaid
+flowchart TD
+    startNode([Сотрудник подходит к КПП])
+    scanPass[Сотрудник прикладывает пропуск]
+    captureFace[Камера получает изображение лица]
+    qualityCheck{Качество кадра достаточное?}
+    retry[Повторить съемку или позвать оператора]
+    getTemplate[Система получает эталонный шаблон владельца пропуска]
+    compare[ML-сервис сравнивает лицо с эталоном]
+    scoreDecision{Уверенность выше порога?}
+    autoAllow[Автоматический допуск]
+    humanReview[Оператор проверяет спорный случай]
+    operatorDecision{Оператор подтверждает личность?}
+    deny[Отказ в проходе]
+    audit[Запись события, score, решения и причины]
+    endNode([Процесс завершен])
+
+    startNode --> scanPass
+    scanPass --> captureFace
+    captureFace --> qualityCheck
+    qualityCheck -->|Нет| retry
+    retry --> humanReview
+    qualityCheck -->|Да| getTemplate
+    getTemplate --> compare
+    compare --> scoreDecision
+    scoreDecision -->|Да| autoAllow
+    scoreDecision -->|Нет| humanReview
+    humanReview --> operatorDecision
+    operatorDecision -->|Да| autoAllow
+    operatorDecision -->|Нет| deny
+    autoAllow --> audit
+    deny --> audit
+    audit --> endNode
+```
+
+![Сценарий MVP](../../diagrams/rendered/business-process-to-be.png)
+
+Исходник диаграммы: [diagrams/source/business-process-to-be.mmd](../../diagrams/source/business-process-to-be.mmd)

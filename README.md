@@ -12,10 +12,13 @@
 
 - [Бизнес-процесс до внедрения системы](docs/diagrams/business_process_before.md)
 - [Бизнес-процесс после внедрения системы](docs/diagrams/business_process_after.md)
+- [Сценарий MVP: пропуск и проверка лица](docs/diagrams/business_process_mvp.md)
 - [Структура данных и распределение хранилищ](docs/diagrams/data_model.md)
 - [Архитектура системы с распределенными данными](docs/diagrams/system_architecture.md)
 - [UML-диаграмма компонентов](docs/diagrams/uml_components.md)
-- [Поведенческая UML-диаграмма: последовательность прохода через КПП](docs/diagrams/uml_sequence.md)
+- [Поведенческая UML-диаграмма: проход через КПП](docs/diagrams/uml_sequence.md)
+- [UML-последовательность для сценария MVP](docs/diagrams/uml_sequence_mvp.md)
+- [Каталог всех диаграмм, PNG и исходников Mermaid](diagrams/README.md)
 
 ## Краткое описание кейса
 

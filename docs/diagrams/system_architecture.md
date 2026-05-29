@@ -53,3 +53,7 @@ flowchart LR
     EDGE1 --> MON
     EDGE2 --> MON
 ```
+
+![Архитектура системы](../../diagrams/rendered/system-architecture.png)
+
+Исходник диаграммы: [diagrams/source/system-architecture.mmd](../../diagrams/source/system-architecture.mmd)

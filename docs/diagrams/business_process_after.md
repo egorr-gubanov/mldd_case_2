@@ -24,3 +24,7 @@ flowchart TD
     I --> Q
     Q --> R([Проход / отказ завершен])
 ```
+
+![Бизнес-процесс после внедрения](../../diagrams/rendered/business-process-to-be.png)
+
+Исходник диаграммы: [diagrams/source/business-process-to-be.mmd](../../diagrams/source/business-process-to-be.mmd)

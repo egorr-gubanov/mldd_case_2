@@ -105,3 +105,7 @@ erDiagram
         datetime deployed_at
     }
 ```
+
+![Структура данных](../../diagrams/rendered/data-er-diagram.png)
+
+Исходник диаграммы: [diagrams/source/data-er-diagram.mmd](../../diagrams/source/data-er-diagram.mmd)

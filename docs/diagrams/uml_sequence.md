@@ -39,3 +39,7 @@ sequenceDiagram
 
     Decision->>Audit: Записать событие, скор, версию модели и решение
 ```
+
+![UML-последовательность](../../diagrams/rendered/uml-sequence-access.png)
+
+Исходник диаграммы: [diagrams/source/uml-sequence-access.mmd](../../diagrams/source/uml-sequence-access.mmd)

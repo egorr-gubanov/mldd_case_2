@@ -17,3 +17,7 @@ flowchart TD
     H --> L([Проход завершен])
     I --> M([Инцидент / отказ])
 ```
+
+![Бизнес-процесс до внедрения](../../diagrams/rendered/business-process-as-is.png)
+
+Исходник диаграммы: [diagrams/source/business-process-as-is.mmd](../../diagrams/source/business-process-as-is.mmd)

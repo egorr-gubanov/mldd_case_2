@@ -27,3 +27,7 @@ flowchart TD
     REG[Model Registry] --> FP
     REG --> EMB
 ```
+
+![UML-компоненты](../../diagrams/rendered/uml-components.png)
+
+Исходник диаграммы: [diagrams/source/uml-components.mmd](../../diagrams/source/uml-components.mmd)
